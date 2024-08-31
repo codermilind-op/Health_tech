@@ -1,0 +1,41 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'symptom_checker/styles.css' %}">
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <title>Symptom Checker</title>-->
+<!--    <link rel="stylesheet" href="{% static 'styles.css' %}">-->
+<!--</head>-->
+<!--<body>-->
+<!--    <h1>Symptom Checker</h1>-->
+<!--    <form method="POST">-->
+<!--        {% csrf_token %}-->
+<!--        <label for="symptoms">Enter your symptoms (comma-separated):</label>-->
+<!--        <input type="text" id="symptoms" name="symptoms" required>-->
+<!--        <button type="submit">Check</button>-->
+<!--    </form>-->
+<!--</body>-->
+<!--</html>-->
+
+
+
+<!-- symptom_checker/templates/symptom_checker/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Symptom Checker</title>
+</head>
+<body>
+    <h1>Symptom Checker</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Check</button>
+    </form>
+</body>
+</html>

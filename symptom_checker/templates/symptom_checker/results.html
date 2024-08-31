@@ -1,0 +1,101 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'symptom_checker/styles.css' %}">
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <title>Possible Conditions</title>-->
+<!--    <link rel="stylesheet" href="{% static 'styles.css' %}">-->
+<!--</head>-->
+<!--<body>-->
+<!--    <h1>Possible Conditions</h1>-->
+<!--    <ul>-->
+<!--        {% for condition in conditions %}-->
+<!--        <li>{{ condition.name }}: {{ condition.symptoms }}</li>-->
+<!--        {% empty %}-->
+<!--        <li>No conditions matched your symptoms.</li>-->
+<!--        {% endfor %}-->
+<!--    </ul>-->
+<!--    <a href="{% url 'symptom_checker' %}">Check Another Symptom</a>-->
+<!--</body>-->
+<!--</html>-->
+
+
+
+<!-- symptom_checker/templates/symptom_checker/results.html -->
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <title>Possible Conditions</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--    <h1>Possible Conditions</h1>-->
+<!--    <ul>-->
+<!--        {% for condition in conditions %}-->
+<!--        <li>{{ condition.name }}: {{ condition.symptoms }}</li>-->
+<!--        {% empty %}-->
+<!--        <li>No conditions matched your symptoms.</li>-->
+<!--        {% endfor %}-->
+<!--    </ul>-->
+<!--    <a href="{% url 'symptom_checker' %}">Check Another Symptom</a>-->
+<!--</body>-->
+<!--</html>-->
+
+
+
+
+<!-- symptom_checker/templates/symptom_checker/results.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Possible Conditions</title>
+</head>
+<body>
+    <h1>Possible Conditions</h1>
+    <ul>
+        {% for condition in conditions %}
+        <li>
+            <strong>{{ condition.name }}</strong><br>
+            Symptoms: {{ condition.symptoms }}<br>
+            Cost: {{ condition.cost|default:"Not Available" }}<br>
+            Prescription: {{ condition.prescription|default:"Not Available" }}<br>
+        </li>
+        {% empty %}
+        <li>No conditions matched your symptoms.</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Healthcare Facilities</h2>
+    <ul>
+        {% for facility in facilities %}
+        <li>
+            <strong>{{ facility.name }}</strong><br>
+            Address: {{ facility.address }}<br>
+            Contact: {{ facility.contact_number|default:"Not Available" }}<br>
+            Website: <a href="{{ facility.website }}" target="_blank">{{ facility.website|default:"Not Available" }}</a><br>
+        </li>
+        {% empty %}
+        <li>No healthcare facilities found.</li>
+        {% endfor %}
+    </ul>
+
+    <a href="{% url 'symptom_checker' %}">Check Another Symptom</a>
+</body>
+</html>
+<!-- Add to results.html -->
+<h2>External Data</h2>
+<ul>
+    {% if external_data %}
+        {% for item in external_data %}
+            <li>{{ item.name }}: {{ item.description }}</li>
+        {% endfor %}
+    {% else %}
+        <li>No additional data available.</li>
+    {% endif %}
+</ul>
